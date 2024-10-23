@@ -22,7 +22,7 @@ public class Program {
 
         for (int i = 1; i <= n; i++) {
             System.out.println();
-            System.out.println("Emplyoee #" + i + ":");
+            System.out.println("Employee #" + i + ":");
 
             System.out.print("Id: ");
             int id = sc.nextInt();
