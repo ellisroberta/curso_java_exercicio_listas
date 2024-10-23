@@ -15,6 +15,8 @@ public class Program {
 
         List<Employee> employees = new ArrayList<>();
 
+        // PART 1 - READING DATA:
+
         System.out.print("How many employees will be registered? ");
         int n = sc.nextInt();
 
@@ -24,6 +26,10 @@ public class Program {
 
             System.out.print("Id: ");
             int id = sc.nextInt();
+            while (hasId(employees, id)) {
+                System.out.print("Id already taken. Try again: ");
+                id = sc.nextInt();
+            }
 
             System.out.print("Name: ");
             sc.nextLine();
@@ -32,6 +38,8 @@ public class Program {
             double salary = sc.nextDouble();
             employees.add(new Employee(id, name, salary));
         }
+
+        // PART 2 - UPDATING SALARY OF GIVEN EMPLOYEE:
 
         System.out.println();
         System.out.print("Enter the employee id that will have salary increase: ");
@@ -47,6 +55,8 @@ public class Program {
             emp.increaseSalary(percentage);
         }
 
+        // PART 3 - LISTING EMPLOYEES:
+
         System.out.println();
         System.out.println("List of employees:");
         for (Employee obj : employees) {
@@ -54,5 +64,10 @@ public class Program {
         }
 
         sc.close();
+    }
+
+    public static boolean hasId(List<Employee> list, int id) {
+        Employee emp = list.stream().filter(x -> x.getId() == id).findFirst().orElse(null);
+        return emp != null;
     }
 }
